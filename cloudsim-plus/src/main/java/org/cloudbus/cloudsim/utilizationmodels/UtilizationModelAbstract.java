@@ -66,12 +66,12 @@ public abstract class UtilizationModelAbstract implements UtilizationModel {
     }
 
     @Override
-    public final double getUtilization() {
+    public double getUtilization() {
         return getUtilization(simulation.clock());
     }
 
     @Override
-    public final double getUtilization(final double time) {
+    public double getUtilization(final double time) {
         if (time < 0) {
             throw new IllegalArgumentException("Time cannot be negative.");
         }

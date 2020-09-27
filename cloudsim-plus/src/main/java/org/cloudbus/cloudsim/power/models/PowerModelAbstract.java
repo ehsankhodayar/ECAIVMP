@@ -37,9 +37,9 @@ public abstract class PowerModelAbstract implements PowerModel {
                     utilization));
 		}
 
-		if(!host.isActive()){
+		/*if(!host.isActive()){
 		    return 0;
-        }
+        }*/
 
         return getPowerInternal(utilization);
     }
