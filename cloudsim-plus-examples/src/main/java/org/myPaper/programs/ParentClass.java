@@ -64,7 +64,7 @@ public abstract class ParentClass {
     protected final double DC4_CARBON_TAX = 10.20; //Dollar/Ton
 
     //Host Configurations
-    protected final int MAXIMUM_NUMBER_OF_HOSTS = 90; //The maximum number of hosts must be equal or greater than the number of host categories
+    protected final int MAXIMUM_NUMBER_OF_HOSTS = 180; //The maximum number of hosts must be equal or greater than the number of host categories
     protected final int IDLE_SHUTDOWN_DEADLINE = 150; //10 minutes
 
     //VM Configurations
