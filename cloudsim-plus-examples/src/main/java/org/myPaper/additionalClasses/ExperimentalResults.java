@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,13 +22,13 @@ public class ExperimentalResults {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExperimentalResults.class.getSimpleName());
     private final File SOURCE_DIR;
     private final List<DatacenterBroker> BROKERS;
-    private final LocalTime SIMULATION_START_TIME;
-    private final LocalTime SIMULATION_FINISH_TIME;
+    private final LocalDateTime SIMULATION_START_TIME;
+    private final LocalDateTime SIMULATION_FINISH_TIME;
 
     public ExperimentalResults(final String outputDirectory,
                                final List<DatacenterBroker> brokerList,
-                               final LocalTime startTime,
-                               final LocalTime finishTime) {
+                               final LocalDateTime startTime,
+                               final LocalDateTime finishTime) {
         int numberOfSubmittedVmReqs = brokerList.stream()
             .mapToInt(datacenterBroker ->
                 datacenterBroker.getVmCreatedList().size() + datacenterBroker.getVmWaitingList().size() + datacenterBroker.getVmFailedList().size())
@@ -95,8 +97,10 @@ public class ExperimentalResults {
 
         List<String> contentList = new ArrayList<>();
 
-        contentList.add("Simulation Start Time: " + SIMULATION_START_TIME);
-        contentList.add("Simulation Finish Time: " + SIMULATION_FINISH_TIME);
+        DateTimeFormatter dft = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+        contentList.add("Simulation Start Time: " + dft.format(SIMULATION_START_TIME));
+        contentList.add("Simulation Finish Time: " + dft.format(SIMULATION_FINISH_TIME));
         contentList.add("Simulation Runtime (in second): " + simulationRuntime);
         contentList.add("Number of Cloud Providers: " + BROKERS.size());
         contentList.add("Number of All Datacenters: " + numberOfAllDcs);

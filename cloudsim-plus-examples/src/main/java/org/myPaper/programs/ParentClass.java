@@ -18,6 +18,7 @@ import org.myPaper.vm.instances.*;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.function.BiFunction;
@@ -25,7 +26,8 @@ import java.util.function.BiFunction;
 public abstract class ParentClass {
     //SimulatorConfigurations
     protected static final int SIMULATION_TIME = 432000; //5 days
-    protected static final LocalTime SIMULATION_START_TIME = LocalTime.now();
+//    protected static final LocalTime SIMULATION_START_TIME = LocalTime.now();
+    protected static final LocalDateTime SIMULATION_START_TIME = LocalDateTime.now();
     protected static CloudSim simulation;
     protected final String OUTPUT_DIRECTORY;
 
@@ -315,7 +317,7 @@ public abstract class ParentClass {
 
     protected void generateExperimentalResults() {
         ExperimentalResults results =
-            new ExperimentalResults(OUTPUT_DIRECTORY, Collections.singletonList(broker1), SIMULATION_START_TIME, LocalTime.now());
+            new ExperimentalResults(OUTPUT_DIRECTORY, Collections.singletonList(broker1), SIMULATION_START_TIME, LocalDateTime.now());
 
         results.generateResults();
     }
