@@ -15,7 +15,7 @@ public class MainClass {
     private static int workloadsNumber = -1;
 
     public static void main(String[] arg) {
-        LOGGER.info("Welcome to CloudSim Plus Simulation Toolkit.");
+        LOGGER.info("Welcome to the CloudSim Plus Simulation Toolkit.");
         LOGGER.info("Please choose one of the following programs for running the simulator: \n{}",
                 "1. The BFD (Best Fit Decreasing) algorithm \n" +
                     "2. The FFD (First Fit Decreasing) algorithm \n" +
