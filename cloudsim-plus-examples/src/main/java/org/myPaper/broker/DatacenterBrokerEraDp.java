@@ -160,7 +160,7 @@ public class DatacenterBrokerEraDp extends DatacenterBrokerMain {
      * @param datacenter the target datacenter
      * @return the average VM utilization at the given datacenter
      */
-    private double getVmAverageCpuUtilization(final Vm vm, final Datacenter datacenter) {
+    public static double getVmAverageCpuUtilization(final Vm vm, final Datacenter datacenter) {
         double avgVmUtil = vm.getNumberOfPes() / datacenter.getHostList().stream()
             .mapToDouble(Host::getNumberOfPes)
             .average()

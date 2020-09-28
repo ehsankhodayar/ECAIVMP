@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class MainClass {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainClass.class.getSimpleName());
-    private enum PROGRAM{BFD, FFD, CRA_DP, ERA_DP, FA_DP, ERA_FFD, OUR_ALGO};
+    private enum PROGRAM{BFD, FFD, CRA_DP, ERA_DP, FA_DP, ERA_FFD,OEMACS, OUR_ALGO};
     private static String directory = null;
     private static int workloadsNumber = -1;
 
@@ -23,7 +23,8 @@ public class MainClass {
                     "4. The ERA-DP Algorithm (Khosravi 2017 paper) \n" +
                     "5. The FA-DP Algorithm (Khosravi 2017 paper) \n" +
                     "6. The ERA-DP-FFD Algorithm \n" +
-                    "7. The OUR-ALGO");
+                    "7. the OEMACS Algorithm (Liu 2016 paper) \n" +
+                    "8. The OUR-ALGO");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -55,6 +56,9 @@ public class MainClass {
                         program = PROGRAM.valueOf("ERA_FFD");
                         break;
                     case 7:
+                        program = PROGRAM.valueOf("OEMACS");
+                        break;
+                    case 8:
                         program = PROGRAM.valueOf("OUR_ALGO");
                         break;
                     default:
@@ -129,6 +133,9 @@ public class MainClass {
                 break;
             case ERA_FFD:
                 new EraFfdProgram(directory, workloadsNumber);
+                break;
+            case OEMACS:
+                new Liu2016OEMACS(directory, workloadsNumber);
                 break;
             case OUR_ALGO:
                 new OurProgram(directory, workloadsNumber);
