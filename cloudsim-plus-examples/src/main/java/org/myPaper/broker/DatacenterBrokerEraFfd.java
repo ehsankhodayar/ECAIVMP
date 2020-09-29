@@ -95,10 +95,10 @@ public class DatacenterBrokerEraFfd extends DatacenterBrokerMain {
 
             final double avgVmUtil = getVmAverageCpuUtilization(vm, datacenter);
             final double vmPowerConsumption = vmHoldingTime * getAveragePowerConsumption(datacenter, avgVmUtil);
-            final double carbonAndPue = getDatacenterPro(datacenter).getCarbon().getCarbonFootprintRate() *
-                getDatacenterPro(datacenter).getDatacenterDynamicPUE(vmPowerConsumption);
+            final double vmOverheadPowerConsumption = vmPowerConsumption * (getDatacenterPro(datacenter).getDatacenterDynamicPUE(vmPowerConsumption) - 1);
+            final double vmTotalPowerConsumption = vmPowerConsumption + vmOverheadPowerConsumption;
 
-                aggregatedDatacenterListMap.put(datacenter, carbonAndPue);
+                aggregatedDatacenterListMap.put(datacenter, vmTotalPowerConsumption);
         }
 
         List<Datacenter> sortedDatacenterList = new ArrayList<>(SortMap.sortByValue(aggregatedDatacenterListMap, true).keySet());
