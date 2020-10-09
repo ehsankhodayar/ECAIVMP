@@ -122,7 +122,13 @@ public class DatacenterPowerSupplyOverheadPowerAware extends DatacenterPowerSupp
             return 0;
         }
 
-        return (itPowerConsumption + addedPowerConsumption) * (getDynamicPUE(itPowerConsumption, addedPowerConsumption) - 1);
+        double pue = getDynamicPUE(itPowerConsumption, addedPowerConsumption);
+
+        if (pue == 0) {
+            return 0;
+        }
+
+        return (itPowerConsumption + addedPowerConsumption) * (pue - 1);
     }
 
     /**
@@ -148,11 +154,16 @@ public class DatacenterPowerSupplyOverheadPowerAware extends DatacenterPowerSupp
      * @see #getITLoad(double, double)
      */
     public double getDynamicPUE(final double ITPowerConsumption, final double addedPowerConsumption) {
-        if (ITPowerConsumption + addedPowerConsumption <= 0) {
+/*        if (ITPowerConsumption + addedPowerConsumption <= 0) {
+            return 0;
+        }*/
+
+        double ITLoad = getDatacenterPro().getDatacenterOverallCpuUtilization();
+
+        if (ITLoad == 0) {
             return 0;
         }
 
-        double ITLoad = getITLoad(ITPowerConsumption, addedPowerConsumption);
         DatacenterPro datacenterPro = (DatacenterPro) datacenter;
         double outsideTemperature = datacenterPro.getOutsideTemperature();
 
