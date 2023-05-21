@@ -8,6 +8,7 @@ import org.cloudbus.cloudsim.util.Conversion;
 import org.cloudbus.cloudsim.vms.Vm;
 import org.myPaper.datacenter.DatacenterPro;
 import org.myPaper.datacenter.vmAllocationPolicies.VmAllocationPolicyLiu;
+import org.myPaper.programs.ParentClass;
 
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +50,15 @@ public class DatacenterBrokerLiu2016OEMACS extends DatacenterBrokerMain {
             throw new IllegalStateException("You don't have any Datacenter created.");
         }
 
-        return runVmAllocationPolicy(isFallbackDatacenter);
+        double startTime = System.currentTimeMillis();
+
+        boolean vmPlacementResult = runVmAllocationPolicy(isFallbackDatacenter);
+
+        double finishTime = System.currentTimeMillis();
+        double runTime= finishTime - startTime;
+        ParentClass.executionTimeList.add(runTime);
+
+        return vmPlacementResult;
     }
 
     /**

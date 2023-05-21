@@ -4,6 +4,7 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.datacenters.Datacenter;
 import org.cloudbus.cloudsim.hosts.Host;
 import org.cloudbus.cloudsim.vms.Vm;
+import org.myPaper.programs.ParentClass;
 
 import java.util.*;
 
@@ -36,6 +37,7 @@ public class DatacenterBrokerBFD extends DatacenterBrokerMain {
             getSimulation().clockStr(),
             this);
 
+        double startTime = System.currentTimeMillis();
         final Comparator<Host> comparator = Comparator.comparingLong(Host::getFreePesNumber);
 
         List<Vm> vmList = new ArrayList<>(getVmWaitingList());
@@ -59,6 +61,10 @@ public class DatacenterBrokerBFD extends DatacenterBrokerMain {
                 }
             }
         }
+
+        double finishTime = System.currentTimeMillis();
+        double runTime= finishTime - startTime;
+        ParentClass.executionTimeList.add(runTime);
 
         if (vmList.isEmpty()) {
             LOGGER.info("{}: {} has found suitable resources for all the new Vm creation requests inside the available datacenters.",

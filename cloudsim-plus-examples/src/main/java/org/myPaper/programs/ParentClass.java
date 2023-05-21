@@ -76,10 +76,16 @@ public abstract class ParentClass {
 
     //Cloudlet Configurations
     protected static List<Cloudlet> cloudletList;
-    protected final String SWF_WORKLOAD_DIRECTORY = "workload/swf/METACENTRUM_Sublist.swf";
+
+    //Dataset 1 -> workload/swf/METACENTRUM_Sublist.swf
+    //Dataset 2 -> workload/swf/CIEMAT-Euler-2008-1.swf
+    protected final String SWF_WORKLOAD_DIRECTORY = "workload/swf/CIEMAT-Euler-2008-1.swf";
     protected final int UTILIZATION_UPDATE_SCHEDULING_INTERVAL = 300; //5 minutes
     protected final int CLOUDLET_LENGTH = 50_000_000; //Million Instructions (MI)
     protected final int MAXIMUM_NUMBER_OF_CLOUDLETS; //cloudlets will be submitted dynamically to the broker during the simulation time
+
+    //OUR-ACS Overhead
+    public static List<Double> executionTimeList;
 
     public ParentClass(final String directory, final boolean liveVmMigration, final int totalVmReqs) {
         if (directory == null || !Files.exists(Paths.get(directory))) {
@@ -89,6 +95,7 @@ public abstract class ParentClass {
         OUTPUT_DIRECTORY = directory;
         LIVE_VM_MIGRATION = liveVmMigration;
         MAXIMUM_NUMBER_OF_CLOUDLETS = totalVmReqs;
+        executionTimeList = new ArrayList<>();
     }
 
     /**
@@ -284,11 +291,13 @@ public abstract class ParentClass {
         if (numberOfSubmmitedWorkloads < cloudletList.size()) {
             List<Cloudlet> newCloudletList = new ArrayList<>();
             for (int i = numberOfSubmmitedWorkloads; i < cloudletList.size(); i++) {
+                //If you want to submit all cloudlets at the beginning, disable the following condition and run the commented line after it.
                 if (cloudletList.get(i).getSubmissionDelay() <= clock) {
                     cloudletList.get(i).setSubmissionDelay(0);
                     cloudletList.get(i).getVm().setSubmissionDelay(0);
                     newCloudletList.add(cloudletList.get(i));
                 }
+//                newCloudletList.add(cloudletList.get(i));
             }
 
             Collections.shuffle(newCloudletList);
@@ -317,7 +326,7 @@ public abstract class ParentClass {
 
     protected void generateExperimentalResults() {
         ExperimentalResults results =
-            new ExperimentalResults(OUTPUT_DIRECTORY, Collections.singletonList(broker1), SIMULATION_START_TIME, LocalDateTime.now());
+            new ExperimentalResults(OUTPUT_DIRECTORY, Collections.singletonList(broker1), SIMULATION_START_TIME, LocalDateTime.now(), executionTimeList);
 
         results.generateResults();
     }

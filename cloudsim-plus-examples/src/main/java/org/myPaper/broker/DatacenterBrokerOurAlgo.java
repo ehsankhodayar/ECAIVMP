@@ -4,6 +4,8 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.datacenters.Datacenter;
 import org.cloudbus.cloudsim.hosts.Host;
 import org.cloudbus.cloudsim.vms.Vm;
+import org.myPaper.programs.OurProgram;
+import org.myPaper.programs.ParentClass;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -66,6 +68,7 @@ public class DatacenterBrokerOurAlgo extends DatacenterBrokerMain {
             return true;
         }
 
+        double startTime = System.currentTimeMillis();
         List<Vm> failedVmList = new ArrayList<>();
 
         for (Vm vm : getVmWaitingList()) {
@@ -81,6 +84,10 @@ public class DatacenterBrokerOurAlgo extends DatacenterBrokerMain {
         if (!failedVmList.isEmpty()) {
             failVms(failedVmList);
         }
+
+        double finishTime = System.currentTimeMillis();
+        double runTime= finishTime - startTime;
+        ParentClass.executionTimeList.add(runTime);
 
         return failedVmList.isEmpty();
     }

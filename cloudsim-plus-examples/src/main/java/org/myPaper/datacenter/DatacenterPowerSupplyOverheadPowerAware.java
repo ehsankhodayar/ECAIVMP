@@ -158,12 +158,7 @@ public class DatacenterPowerSupplyOverheadPowerAware extends DatacenterPowerSupp
             return 0;
         }*/
 
-        double ITLoad = getDatacenterPro().getDatacenterOverallCpuUtilization();
-
-        if (ITLoad == 0) {
-            return 0;
-        }
-
+        double ITLoad = getITLoad(ITPowerConsumption, addedPowerConsumption);
         DatacenterPro datacenterPro = (DatacenterPro) datacenter;
         double outsideTemperature = datacenterPro.getOutsideTemperature();
 

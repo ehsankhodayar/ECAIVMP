@@ -60,7 +60,7 @@ public class Liu2016OEMACS extends ParentClass {
      * @return a new VM allocation migration policy
      */
     private VmAllocationPolicy createNewVmAllocationPolicy() {
-        Liu liu = new Liu2016(10, 5, 0.7, 0.1, 0.1, 2);
+        Liu liu = new Liu2016(2, 3, 0.7, 0.1, 0.1, 2);
         return new VmAllocationPolicyLiu(liu);
     }
 }
