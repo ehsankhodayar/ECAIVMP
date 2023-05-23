@@ -79,7 +79,7 @@ public abstract class ParentClass {
 
     //Dataset 1 -> workload/swf/METACENTRUM_Sublist.swf
     //Dataset 2 -> workload/swf/CIEMAT-Euler-2008-1.swf
-    protected final String SWF_WORKLOAD_DIRECTORY = "workload/swf/CIEMAT-Euler-2008-1.swf";
+    protected final String SWF_WORKLOAD_DIRECTORY = "workload/swf/METACENTRUM_Sublist.swf";
     protected final int UTILIZATION_UPDATE_SCHEDULING_INTERVAL = 300; //5 minutes
     protected final int CLOUDLET_LENGTH = 50_000_000; //Million Instructions (MI)
     protected final int MAXIMUM_NUMBER_OF_CLOUDLETS; //cloudlets will be submitted dynamically to the broker during the simulation time
@@ -292,12 +292,12 @@ public abstract class ParentClass {
             List<Cloudlet> newCloudletList = new ArrayList<>();
             for (int i = numberOfSubmmitedWorkloads; i < cloudletList.size(); i++) {
                 //If you want to submit all cloudlets at the beginning, disable the following condition and run the commented line after it.
-                if (cloudletList.get(i).getSubmissionDelay() <= clock) {
-                    cloudletList.get(i).setSubmissionDelay(0);
-                    cloudletList.get(i).getVm().setSubmissionDelay(0);
-                    newCloudletList.add(cloudletList.get(i));
-                }
-//                newCloudletList.add(cloudletList.get(i));
+//                if (cloudletList.get(i).getSubmissionDelay() <= clock) {
+//                    cloudletList.get(i).setSubmissionDelay(0);
+//                    cloudletList.get(i).getVm().setSubmissionDelay(0);
+//                    newCloudletList.add(cloudletList.get(i));
+//                }
+                newCloudletList.add(cloudletList.get(i));
             }
 
             Collections.shuffle(newCloudletList);
