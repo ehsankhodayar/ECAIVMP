@@ -1,6 +1,6 @@
 <h1>Energy and carbon-aware initial VM placement in geographically distributed cloud data centers</h1><br/>
 
-<b>Abstract</b><br/>
+<h3>Abstract</h3><br/>
 Energy and carbon efficiency has become one of the most important research topics in the cloud computing research area because of the growing demand for cloud data center infrastructures. In addition to the environmental impact of emitting carbon, local authorities impose a carbon tax based on the amount of emitted carbon by the data centers. Therefore, this paper introduces the energy and carbon-aware initial VM placement (ECAIVMP), one of the most efficient strategies for minimizing the total energy consumption and carbon emission of cloud data centers without sacrificing the quality of service. Our proposed algorithm considers multiple geo-distributed cloud data centers and acknowledges both IT and non-IT power usage during the virtual machine placement process. An extensive simulation in the CloudSim Plus framework is conducted to evaluate the performance of our proposed algorithm using real-world datasets, including workloads, power model benchmarks, and outside temperature. The experimental results demonstrate that our algorithm is able to reduce energy consumption by 17% and carbon emissions by 6% on average compared to other competitor algorithms.<br/>
 
 <h3>Khodayarseresht, E., Shameli-Sendi, A., Fournier, Q. and Dagenais, M., 2023. Energy and carbon-aware initial VM placement in geographically distributed cloud data centers. Sustainable Computing: Informatics and Systems, p.100888.</h3><br/>
